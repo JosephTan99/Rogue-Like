@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class TempoManager : MonoBehaviour
 {
     /// <summary>
-    /// Handles the tempo of the game.
+    /// Handles the tempo of the game. Maximum 120 BPM, DO NOT go over this value.
     /// </summary>
 
 
