@@ -130,6 +130,7 @@ public class Pathfinding
         return lowestFCostNode;
     }
 
+    /*
     public List<Vector2Int> CalculatePossibleLocations(List<Vector2Int> moveablePositions, Vector2Int startPos)
     {
         openList = new List<Node>();
@@ -165,4 +166,5 @@ public class Pathfinding
         updatedPositions.Remove(startPos);
         return updatedPositions;
     }
+    */
 }
