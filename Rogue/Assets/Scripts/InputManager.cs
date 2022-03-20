@@ -41,7 +41,6 @@ public class InputManager : MonoBehaviour
             dir = Vector2.left;
                 
         }
-
     }
 
 
