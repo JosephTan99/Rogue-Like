@@ -19,9 +19,18 @@ public class TempoManager : MonoBehaviour
         instance = this;
     }
 
-    private float bpm;
-    private float timeCount;
-    private event UnityAction Tick;
+    public float bpm;
+    public float timeCount;
+    public event UnityAction Tick;
+
+    private void Update()
+    {
+        BeatUpdate();
+    }
+
+
+
+
 
     public void ResetBpm(float newBpm)
     {
@@ -41,11 +50,10 @@ public class TempoManager : MonoBehaviour
 
     private void OnBeat()
     {
-        
+        Tick?.Invoke();
+        Tick = null;
+        Tick += MovementManager.instance.Move;
+        InputManager.instance.ResetParam();
     }
 
-    public void AddTick()
-    {
-
-    }
 }
