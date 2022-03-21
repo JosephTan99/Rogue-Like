@@ -5,18 +5,33 @@ using UnityEngine;
 public enum TileType
 {
     Empty,
-    Player,
     Enemy,
     Obstacle
 }
 
 public class GameTile{
-    private TileType TileType;
+    private TileType tileType;
     private GameObject gameObject;
+
+    public GameTile(TileType newTileType, GameObject newGameObject)
+    {
+        tileType = newTileType;
+        gameObject = newGameObject;
+    }
+
+    public void SetTileType(TileType newTileType)
+    {
+        tileType = newTileType;
+    }
+
+    public void SetObject(GameObject newGameObject)
+    {
+        gameObject = newGameObject;
+    }
 
     public TileType GetTileType()
     {
-        return TileType;
+        return tileType;
     }
 
     public GameObject GetObject()
@@ -37,13 +52,24 @@ public class GridManager : MonoBehaviour
 
     private GameTile[,] gridData = new GameTile[16, 16];
 
+    public void SetGridData(GameTile[,] newGridData)
+    {
+        gridData = newGridData;
+    }
+
+    public void SetGridTile(GameTile tile, Vector2Int pos)
+    {
+        gridData[pos.x, pos.y] = tile;
+    }
+
+
     public GameTile[,] GetGridData()
     {
         return gridData;
     }
 
-    public TileType GetTileType(int x, int y)
+    public TileType GetTileType(Vector2Int pos)
     {
-        return gridData[x, y].GetTileType();
+        return gridData[pos.x, pos.y].GetTileType();
     }
 }
