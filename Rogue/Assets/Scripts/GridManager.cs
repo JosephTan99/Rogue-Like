@@ -27,9 +27,17 @@ public class GameTile{
 
 public class GridManager : MonoBehaviour
 {
+    //Singleton Pattern
+    public static GridManager instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
     private GameTile[,] gridData = new GameTile[16, 16];
 
-    public GameTile[,] GetTileData()
+    public GameTile[,] GetGridData()
     {
         return gridData;
     }

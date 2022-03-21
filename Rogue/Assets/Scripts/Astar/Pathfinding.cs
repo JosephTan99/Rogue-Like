@@ -49,7 +49,7 @@ public class Pathfinding
 
             foreach(Node neighbour in CalculateNeighbourNode(currNode))
             {
-                if (TileData.instance.gridData[neighbour.nodePos.x, neighbour.nodePos.y].tileType != TileType.Empty) continue;
+                if (GridManager.instance.GetTileType(neighbour.nodePos.x, neighbour.nodePos.y) != TileType.Empty) continue;
                 if (closedList.Contains(neighbour)) continue;
 
                 int tentativeGCost = currNode.gCost + CalculateDistanceCost(currNode.nodePos, endPos);
