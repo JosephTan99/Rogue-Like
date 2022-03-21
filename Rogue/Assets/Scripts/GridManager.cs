@@ -48,9 +48,11 @@ public class GridManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+
+        gridData = InitGrid(16,16);
     }
 
-    private GameTile[,] gridData = new GameTile[16, 16];
+    private GameTile[,] gridData;
 
     public void SetGridData(GameTile[,] newGridData)
     {
@@ -71,5 +73,23 @@ public class GridManager : MonoBehaviour
     public TileType GetTileType(Vector2Int pos)
     {
         return gridData[pos.x, pos.y].GetTileType();
+    }
+
+    public Vector2Int GetGridDimension()
+    {
+        return new Vector2Int(gridData.GetLength(0), gridData.GetLength(1));
+    }
+
+    private GameTile[,] InitGrid(int width, int height)
+    {
+        GameTile[,] newGridData = new GameTile[width, height];
+        for (int i = 0; i < width; i++)
+        {
+            for (int j = 0; j < height; j++)
+            {
+                newGridData[i, j] = new GameTile(TileType.Empty, null);
+            }
+        }
+        return newGridData;
     }
 }
