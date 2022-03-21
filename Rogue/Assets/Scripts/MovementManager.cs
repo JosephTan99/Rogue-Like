@@ -20,12 +20,7 @@ public class MovementManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-    }
-
-    private float timer = 0;
-    private void Update()
-    {
-        
+        TempoManager.instance.Tick += MovementManager.instance.Move;
     }
 
     public void Move()

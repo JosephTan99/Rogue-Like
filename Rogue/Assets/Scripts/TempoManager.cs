@@ -22,6 +22,7 @@ public class TempoManager : MonoBehaviour
     public float bpm;
     public float timeCount;
     public event UnityAction Tick;
+    public event UnityAction EndTick;
 
     private void Update()
     {
@@ -51,8 +52,8 @@ public class TempoManager : MonoBehaviour
     private void OnBeat()
     {
         Tick?.Invoke();
-        Tick = null;
-        Tick += MovementManager.instance.Move;
+        //Tick = null;
+        //Tick += MovementManager.instance.Move;
         InputManager.instance.ResetParam();
     }
 
