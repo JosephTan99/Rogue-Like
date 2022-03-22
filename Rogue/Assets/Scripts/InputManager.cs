@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Handles all inputs in the code.
+/// </summary>
 public class InputManager : MonoBehaviour
 {
-    /// <summary>
-    /// Handles all inputs in the code.
-    /// </summary>
+
 
     //Singleton Pattern
     public static InputManager instance;
@@ -43,14 +44,23 @@ public class InputManager : MonoBehaviour
         }
     }
 
-
+    #region Getters & Setters
+    /// <summary>
+    /// Returns the current direction of the input in Vector2.
+    /// </summary>
+    /// <returns></returns>
     public Vector2 GetDir()
     {
         return dir;
     }
+    #endregion
 
+    /// <summary>
+    /// Resets the direction.
+    /// </summary>
     public void ResetParam()
     {
         dir = Vector2.zero;
     }
+
 }

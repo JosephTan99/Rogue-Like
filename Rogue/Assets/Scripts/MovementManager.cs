@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
+/// <summary>
+/// Manages the movement of the player character.
+/// </summary>
 public class MovementManager : MonoBehaviour
 {
-    /// <summary>
-    /// Manages the movement of the player character.
-    /// </summary>
-
-
     //Singleton Pattern
 
     public static MovementManager instance;
@@ -20,7 +18,7 @@ public class MovementManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        TempoManager.instance.Tick += MovementManager.instance.Move;
+        TempoManager.instance.Tick += Move;
     }
 
     public void Move()
@@ -32,7 +30,7 @@ public class MovementManager : MonoBehaviour
         Vector2Int newPos = playerPos + intDir;
         if(newPos.x >= 0 && newPos.y >= 0 && newPos.x < dim.x && newPos.y < dim.y)
         {
-            if (GridManager.instance.GetTileType(newPos) == TileType.Empty)
+            if (GridManager.instance.GetTile(newPos).GetTileType() == TileType.Empty)
             {
                 playerPos += intDir;
                 transform.DOJump(transform.position + (Vector3)dir, 0.25f, 1, 0.5f);

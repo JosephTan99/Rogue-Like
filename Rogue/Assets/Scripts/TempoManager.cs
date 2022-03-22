@@ -3,14 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+/// <summary>
+/// Handles the tempo and ticks of the game. 
+/// </summary>
 public class TempoManager : MonoBehaviour
 {
-    /// <summary>
-    /// Handles the tempo of the game. Maximum 120 BPM, DO NOT go over this value.
-    /// </summary>
-
-
-
     //Singleton Pattern
     public static TempoManager instance;
 
@@ -19,24 +16,42 @@ public class TempoManager : MonoBehaviour
         instance = this;
     }
 
-    public float bpm;
-    public float timeCount;
+    private float bpm;
+    private float timeCount;
+    /// <summary>
+    /// A Delegate to store actions to be called on beat.
+    /// </summary>
     public event UnityAction Tick;
+    /// <summary>
+    /// A Delegate to store actions to be called after the beat.
+    /// </summary>
     public event UnityAction EndTick;
+
+    #region Getters & Setters
+    /// <summary>
+    /// Updates the bpm value to the new bpm value, max 120 bpm
+    /// </summary>
+    /// <param name="newBpm"></param>
+    public void SetBpm(float newBpm)
+    {
+        bpm = newBpm;
+        timeCount = 60 / bpm;
+    }
+
+    /// <summary>
+    /// Returns the current bpm.
+    /// </summary>
+    /// <returns></returns>
+    public float GetBpm()
+    {
+        return bpm;
+    }
+    #endregion
+
 
     private void Update()
     {
         BeatUpdate();
-    }
-
-
-
-
-
-    public void ResetBpm(float newBpm)
-    {
-        timeCount = 60/bpm;
-        bpm = newBpm;
     }
 
     private void BeatUpdate()
@@ -56,5 +71,4 @@ public class TempoManager : MonoBehaviour
         //Tick += MovementManager.instance.Move;
         InputManager.instance.ResetParam();
     }
-
 }
