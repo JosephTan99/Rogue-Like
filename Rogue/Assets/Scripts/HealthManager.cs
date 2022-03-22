@@ -7,6 +7,15 @@ using UnityEngine;
 /// </summary>
 public class HealthManager : MonoBehaviour
 {
+    //Singleton Patter
+
+    public static HealthManager instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
     private float health;
 
 
