@@ -11,12 +11,23 @@ public class SquarePatrolAI : BaseAI
 
     public override void TickUpdate()
     {
-        n++;
-        Move(direction);
+        if (MovementManager.instance.GetPlayerPos() == Vector2Int.RoundToInt(transform.position) + direction) Attack();
+        else if(GridManager.instance.GetTile(Vector2Int.RoundToInt(transform.position) + direction).GetTileType() == TileType.Empty)
+        {
+            n++;
+            Move(direction);
+        }
+        else n++;
         if (n > (length * 4 - 4) / 4f)
         {
             n = 1;
             direction = new Vector2Int(-direction.y, direction.x);
         }
+    }
+
+    private void Attack()
+    {
+        Move(Vector2.zero);
+        Debug.Log("player -1");
     }
 }

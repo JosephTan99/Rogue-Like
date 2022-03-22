@@ -16,7 +16,7 @@ public class TempoManager : MonoBehaviour
         instance = this;
     }
 
-    private float bpm;
+    [SerializeField] private float bpm;
     private float timeCount;
     /// <summary>
     /// A Delegate to store actions to be called on beat.
