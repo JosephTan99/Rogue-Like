@@ -14,6 +14,7 @@ public class SquarePatrolAI : BaseAI
         if (MovementManager.instance.GetPlayerPos() == Vector2Int.RoundToInt(transform.position) + direction) Attack();
         else if(GridManager.instance.GetTile(Vector2Int.RoundToInt(transform.position) + direction).GetTileType() == TileType.Empty)
         {
+            //to fix later here have error
             n++;
             Move(direction);
         }
