@@ -130,14 +130,21 @@ public class GridManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Returns GameTile at Vector2Int position given in parameter.
+    /// Returns GameTile at Vector2Int position given in parameter. Returns null if position is not valid.
     /// </summary>
     /// <param name="pos"></param>
     /// <returns></returns>
     public GameTile GetTile(Vector2Int pos)
     {
-        // to add validation check
-        return gridData[pos.x, pos.y];
+        Vector2Int dim = GetGridDimension();
+        if(pos.x >= 0 && pos.y >= 0 && pos.x < dim.x && pos.y < dim.y)
+        {
+            return gridData[pos.x, pos.y];
+        }
+        else
+        {
+            return null;
+        }
     }
 
     /// <summary>
