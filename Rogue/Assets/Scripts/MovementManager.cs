@@ -21,6 +21,9 @@ public class MovementManager : MonoBehaviour
         TempoManager.instance.Tick += Move;
     }
 
+    /// <summary>
+    /// Moves the player character 1 Tile towards the direction of keypress.
+    /// </summary>
     public void Move()
     {
 
@@ -46,13 +49,23 @@ public class MovementManager : MonoBehaviour
         }
     }
 
+    #region Getters & Setters
+    /// <summary>
+    /// Returns the current player game tile position in Vector2Int.
+    /// </summary>
+    /// <returns></returns>
     public Vector2Int GetPlayerPos()
     {
         return playerPos;
     }
 
+    /// <summary>
+    /// Sets the current player game tile position according to the parameter.
+    /// </summary>
+    /// <param name="newPlayerPos"></param>
     public void SetPlayerPos(Vector2Int newPlayerPos)
     {
         playerPos = newPlayerPos;
     }
+    #endregion
 }
