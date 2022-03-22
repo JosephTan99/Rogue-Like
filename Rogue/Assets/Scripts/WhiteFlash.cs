@@ -32,7 +32,7 @@ public class WhiteFlash : MonoBehaviour
     private IEnumerator FlashCoroutine()
     {
         spriteRenderer.material = flashMaterial;
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.05f);
         spriteRenderer.material = originalMaterial;
         flashCoroutine = null;
     }

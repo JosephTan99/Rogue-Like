@@ -16,7 +16,7 @@ public class HealthManager : MonoBehaviour
         instance = this;
     }
 
-    private float health;
+    private float health = 69;
 
 
     #region Getters & Setters
@@ -51,5 +51,6 @@ public class HealthManager : MonoBehaviour
             return;
         }
         health -= damage;
+        GetComponent<WhiteFlash>().Flash();
     }
 }

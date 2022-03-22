@@ -29,6 +29,6 @@ public class SquarePatrolAI : BaseAI
     private void Attack()
     {
         Move(Vector2.zero);
-        Debug.Log("player -1");
+        HealthManager.instance.TakeDamage(1f);
     }
 }
