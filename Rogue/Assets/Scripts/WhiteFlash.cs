@@ -23,10 +23,7 @@ public class WhiteFlash : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Flash();
-        }
+        
     }
 
     private IEnumerator FlashCoroutine()

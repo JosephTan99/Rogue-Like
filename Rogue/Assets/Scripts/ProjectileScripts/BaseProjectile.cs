@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class BaseAI : MonoBehaviour
+public class BaseProjectile : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
+
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -21,5 +22,8 @@ public class BaseAI : MonoBehaviour
         else if (velocity.x > 0) spriteRenderer.flipX = false;
     }
 
-    public virtual void TickUpdate() { }
+    public virtual void TickUpdate()
+    {
+
+    }
 }
