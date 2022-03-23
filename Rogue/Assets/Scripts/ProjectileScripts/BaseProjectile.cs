@@ -7,17 +7,35 @@ public class BaseProjectile : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
 
+    private Vector2Int projectilePos;
+
+    private void CheckGridTiles(Vector2Int tile)
+    {
+        if (GridManager.instance.GetTile(tile) == null)
+        {
+            DestroyProjectile();
+        }
+    }
+
+    public virtual void DestroyProjectile()
+    {
+        TempoManager.instance.Tick -= TickUpdate;
+        Destroy(gameObject);
+    }
+
     public virtual void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         TempoManager.instance.Tick += TickUpdate;
     }
 
-    public void Move(Vector2 velocity)
+    public void Move(Vector2Int velocity)
     {
-        transform.DOLocalMove(transform.position + (Vector3)velocity, 1f);
+        transform.DOLocalMove(transform.position + (Vector3)(Vector2)velocity, 1f);
         if (velocity.x < 0) spriteRenderer.flipX = true;
         else if (velocity.x > 0) spriteRenderer.flipX = false;
+        projectilePos += velocity;
+        CheckGridTiles(projectilePos);
     }
 
     public virtual void TickUpdate()
