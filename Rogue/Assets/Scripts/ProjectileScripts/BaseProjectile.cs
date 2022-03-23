@@ -15,9 +15,7 @@ public class BaseProjectile : MonoBehaviour
 
     public void Move(Vector2 velocity)
     {
-        GridManager.instance.SetGridTile(new GameTile(TileType.Empty, null), Vector2Int.RoundToInt(transform.position));
-        GridManager.instance.SetGridTile(new GameTile(TileType.Enemy, gameObject), Vector2Int.RoundToInt(transform.position + (Vector3)velocity));
-        transform.DOJump(transform.position + (Vector3)velocity, 0.25f, 1, 0.5f);
+        transform.DOLocalMove(transform.position + (Vector3)velocity, 1f);
         if (velocity.x < 0) spriteRenderer.flipX = true;
         else if (velocity.x > 0) spriteRenderer.flipX = false;
     }
