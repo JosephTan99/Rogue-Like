@@ -7,7 +7,7 @@ public class BaseProjectile : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
 
-    private void Start()
+    public virtual void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         TempoManager.instance.Tick += TickUpdate;
