@@ -23,6 +23,7 @@ public class BaseProjectile : MonoBehaviour
         Destroy(gameObject);
     }
 
+
     public virtual void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
