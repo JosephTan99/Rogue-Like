@@ -17,15 +17,20 @@ public class TempoManager : MonoBehaviour
     }
 
     [SerializeField] private float bpm;
-    private float timeCount;
+    private float timeCountA;
+    private float timeCountE;
+
+
+    public int frameCount;
+
     /// <summary>
     /// A Delegate to store actions to be called on beat.
     /// </summary>
-    public event UnityAction Tick;
+    public event UnityAction TickA;
     /// <summary>
     /// A Delegate to store actions to be called after the beat.
     /// </summary>
-    public event UnityAction EndTick;
+    public event UnityAction TickE;
 
     #region Getters & Setters
     /// <summary>
@@ -35,7 +40,7 @@ public class TempoManager : MonoBehaviour
     public void SetBpm(float newBpm)
     {
         bpm = newBpm;
-        timeCount = 60 / bpm;
+        timeCountA = 60 / bpm;
     }
 
     /// <summary>
@@ -56,19 +61,32 @@ public class TempoManager : MonoBehaviour
 
     private void BeatUpdate()
     {
-        timeCount -= Time.deltaTime;
-        if (timeCount <= 0)
+        timeCountA -= Time.deltaTime;
+        if (timeCountA <= 0)
         {
-            OnBeat();
-            timeCount = 60 / bpm;
+            OnBeatA();
+            timeCountA = 60 / bpm;
+            timeCountE = 45 / bpm;
+        }
+
+        timeCountE -= Time.deltaTime;
+        if (timeCountE <= 0)
+        {
+            OnBeatE();
         }
     }
 
-    private void OnBeat()
+    private void OnBeatA()
     {
-        Tick?.Invoke();
+        TickA?.Invoke();
         //Tick = null;
         //Tick += MovementManager.instance.Move;
-        InputManager.instance.ResetParam();
+        MovementManager.instance.ResetParam();
+    }
+
+    private void OnBeatE()
+    {
+        TickE?.Invoke();
+
     }
 }

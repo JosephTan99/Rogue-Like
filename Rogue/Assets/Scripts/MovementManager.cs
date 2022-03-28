@@ -13,12 +13,19 @@ public class MovementManager : MonoBehaviour
     public static MovementManager instance;
 
     [SerializeField]
-    private Vector2Int playerPos = new Vector2Int(0,0); 
+    private Vector2Int playerPos = new Vector2Int(0,0);
+
+    private Vector2Int dir;
 
     private void Awake()
     {
         instance = this;
-        TempoManager.instance.Tick += Move;
+        TempoManager.instance.TickA += Move;
+    }
+
+    private void Update()
+    {
+        InputDir();
     }
 
     /// <summary>
@@ -26,17 +33,14 @@ public class MovementManager : MonoBehaviour
     /// </summary>
     public void Move()
     {
-
-        Vector2 dir = InputManager.instance.GetDir();
-        Vector2Int intDir = Vector2Int.RoundToInt(dir);
         Vector2Int dim = GridManager.instance.GetGridDimension();
-        Vector2Int newPos = playerPos + intDir;
+        Vector2Int newPos = playerPos + dir;
         if(newPos.x >= 0 && newPos.y >= 0 && newPos.x < dim.x && newPos.y < dim.y)
         {
             if (GridManager.instance.GetTile(newPos).GetTileType() == TileType.Empty)
             {
-                playerPos += intDir;
-                transform.DOJump(transform.position + (Vector3)dir, 0.25f, 1, 0.5f);
+                playerPos += dir;
+                transform.DOJump(transform.position + (Vector3)(Vector2)dir, 0.25f, 1, 0.5f);
                 if (dir.x < 0) GetComponent<SpriteRenderer>().flipX = true;
                 else if (dir.x > 0) GetComponent<SpriteRenderer>().flipX = false;
             }
@@ -46,6 +50,33 @@ public class MovementManager : MonoBehaviour
             transform.DOJump(transform.position, 0.25f, 1, 0.5f);
             if (dir.x < 0) GetComponent<SpriteRenderer>().flipX = true;
             else if (dir.x > 0) GetComponent<SpriteRenderer>().flipX = false;
+        }
+    }
+
+    public void ResetParam()
+    {
+        dir = Vector2Int.zero;
+    }
+
+    private void InputDir()
+    {
+        if (Input.GetKey(KeyCode.UpArrow))
+        {
+            dir = Vector2Int.up;
+        }
+        if (Input.GetKey(KeyCode.DownArrow))
+        {
+            dir = Vector2Int.down;
+
+        }
+        if (Input.GetKey(KeyCode.RightArrow))
+        {
+            dir = Vector2Int.right;
+
+        }
+        if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            dir = Vector2Int.left;
         }
     }
 
@@ -66,6 +97,11 @@ public class MovementManager : MonoBehaviour
     public void SetPlayerPos(Vector2Int newPlayerPos)
     {
         playerPos = newPlayerPos;
+    }
+
+    public Vector2 GetDir()
+    {
+        return dir;
     }
     #endregion
 }

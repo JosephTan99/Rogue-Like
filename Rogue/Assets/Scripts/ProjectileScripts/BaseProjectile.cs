@@ -19,7 +19,7 @@ public class BaseProjectile : MonoBehaviour
 
     public virtual void DestroyProjectile()
     {
-        TempoManager.instance.Tick -= TickUpdate;
+        TempoManager.instance.TickA -= TickUpdate;
         Destroy(gameObject);
     }
 
@@ -27,7 +27,7 @@ public class BaseProjectile : MonoBehaviour
     public virtual void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        TempoManager.instance.Tick += TickUpdate;
+        TempoManager.instance.TickA += TickUpdate;
     }
 
     public void Move(Vector2Int velocity)

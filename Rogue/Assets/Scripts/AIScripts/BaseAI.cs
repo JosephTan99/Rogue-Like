@@ -9,7 +9,8 @@ public class BaseAI : MonoBehaviour
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        TempoManager.instance.Tick += TickUpdate;
+        TempoManager.instance.TickA += TickUpdateA;
+        TempoManager.instance.TickE += TickUpdateE;
     }
 
     public void Move(Vector2 velocity)
@@ -21,5 +22,7 @@ public class BaseAI : MonoBehaviour
         else if (velocity.x > 0) spriteRenderer.flipX = false;
     }
 
-    public virtual void TickUpdate() { }
+    public virtual void TickUpdateA() { }
+
+    public virtual void TickUpdateE() { }
 }

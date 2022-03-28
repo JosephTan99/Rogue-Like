@@ -9,9 +9,16 @@ public class SquarePatrolAI : BaseAI
     private int n = 1;
     private Vector2Int direction = new Vector2Int(1,0);
 
-    public override void TickUpdate()
+    [SerializeField]
+    private bool isAttack = false;
+
+    public override void TickUpdateA()
     {
-        if (MovementManager.instance.GetPlayerPos() == Vector2Int.RoundToInt(transform.position) + direction) Attack();
+        if (MovementManager.instance.GetPlayerPos() == Vector2Int.RoundToInt(transform.position) + direction)
+        {
+            Move(Vector2.zero);
+            isAttack = true;
+        }
         else if(GridManager.instance.GetTile(Vector2Int.RoundToInt(transform.position) + direction).GetTileType() == TileType.Empty)
         {
             //to fix later here have error
@@ -26,9 +33,18 @@ public class SquarePatrolAI : BaseAI
         }
     }
 
+    public override void TickUpdateE()
+    {
+        if (isAttack)
+        {
+            isAttack = false;
+            Attack();
+        }
+    }
+
     private void Attack()
     {
-        Move(Vector2.zero);
+        
         HealthManager.instance.TakeDamage(1f);
     }
 }
