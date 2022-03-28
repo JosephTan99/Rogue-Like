@@ -32,7 +32,7 @@ public class BaseProjectile : MonoBehaviour
 
     public void Move(Vector2Int velocity)
     {
-        transform.DOLocalMove(transform.position + (Vector3)(Vector2)velocity, 1f);
+        transform.DOLocalMove(transform.position + (Vector3)(Vector2)velocity, 60f / TempoManager.instance.GetBpm()).SetEase(Ease.Linear);
         if (velocity.x < 0) spriteRenderer.flipX = true;
         else if (velocity.x > 0) spriteRenderer.flipX = false;
         projectilePos += velocity;
