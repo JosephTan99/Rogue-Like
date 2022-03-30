@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: DungeonTile
+  m_Name: GrassTile_3
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: 4830a17872878b440bc1e4ee305b84c1, type: 3}
+  m_Sprite: {fileID: 7552765961935938454, guid: 3c648b07d0068c24cb11e5809e4cc41d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
