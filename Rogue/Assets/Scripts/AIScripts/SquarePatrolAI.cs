@@ -42,6 +42,22 @@ public class SquarePatrolAI : BaseAI
         }
     }
 
+    public override Vector2Int MoveTile()
+    {
+        if (MovementManager.instance.GetPlayerPos() == Vector2Int.RoundToInt(transform.position) + direction)
+        {
+            return Vector2Int.RoundToInt(transform.position);
+        }
+        else if (GridManager.instance.GetTile(Vector2Int.RoundToInt(transform.position) + direction).GetTileType() == TileType.Empty)
+        {
+            return Vector2Int.RoundToInt(transform.position) + direction;
+        }
+        else
+        {
+            return Vector2Int.RoundToInt(transform.position);
+        }
+    }
+
     private void Attack()
     {
         

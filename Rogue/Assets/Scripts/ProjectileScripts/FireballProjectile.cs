@@ -7,7 +7,7 @@ public class FireballProjectile : BaseProjectile
     [SerializeField]
     private Vector2Int velocity;
 
-    public override void TickUpdate()
+    public override void TickUpdateA()
     {
         Move(velocity);
     }
