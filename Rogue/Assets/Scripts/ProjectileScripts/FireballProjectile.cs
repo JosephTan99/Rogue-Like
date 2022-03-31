@@ -29,6 +29,7 @@ public class FireballProjectile : BaseProjectile
     {
         base.Start();
         int randomNumber = Random.Range(0, 4);
+        randomNumber = 0;
         velocity = new Vector2Int(Mathf.RoundToInt(Mathf.Cos(randomNumber * Mathf.PI / 2)), Mathf.RoundToInt(Mathf.Sin(randomNumber * Mathf.PI / 2)));
     }
 }

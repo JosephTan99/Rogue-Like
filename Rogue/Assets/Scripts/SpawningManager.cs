@@ -10,7 +10,7 @@ public class SpawningManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.K))
         {
-            SpawnEnemy(testSlime, new Vector2Int(Random.Range(0, 4), Random.Range(0, 4)));
+            SpawnEnemy(testSlime, new Vector2Int(8, 0));
         }
     }
 
