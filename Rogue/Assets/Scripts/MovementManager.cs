@@ -31,6 +31,7 @@ public class MovementManager : MonoBehaviour
     /// <summary>
     /// Moves the player character 1 Tile towards the direction of keypress.
     /// </summary>
+    private float lastX = 0;
     public void Move()
     {
         Vector2Int dim = GridManager.instance.GetGridDimension();
@@ -40,9 +41,13 @@ public class MovementManager : MonoBehaviour
             if (GridManager.instance.GetTile(newPos).GetTileType() == TileType.Empty)
             {
                 playerPos += dir;
-                transform.DOJump(transform.position + (Vector3)(Vector2)dir, 0.25f, 1, 0.5f);
-                if (dir.x < 0) GetComponent<SpriteRenderer>().flipX = true;
-                else if (dir.x > 0) GetComponent<SpriteRenderer>().flipX = false;
+                transform.DOMove(transform.position + (Vector3)(Vector2)dir, TempoManager.instance.GetBpm() / 60f).SetEase(Ease.InOutElastic,1.2f);
+                //transform.DOJump(transform.position + (Vector3)(Vector2)dir, 0.25f, 1, 0.5f);
+                if(dir.x != lastX && dir.x!=0)
+                {
+                    transform.DOScaleX(dir.x, 0.1f).SetDelay(0.2f);
+                }
+                lastX = dir.x;
             }
         }
         else
